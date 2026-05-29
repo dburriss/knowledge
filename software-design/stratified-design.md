@@ -1,6 +1,6 @@
 ---
 description: How stratified design applies to F# projects using clean/ports-and-adapters architecture, covering layer mapping, rate of change, layer-skipping smells, and a code-review checklist.
-tags: [architecture, clean-architecture, ports-and-adapters, stratified-design, fsharp, style-guide]
+tags: [architecture, fsharp, style-guide]
 ---
 
 # Stratified Design in F# / Clean Architecture

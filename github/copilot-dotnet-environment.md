@@ -1,3 +1,8 @@
+---
+description: Guide for customizing GitHub Copilot's environment for .NET projects, including SDK setup and tool configuration.
+tags: [ai]
+---
+
 # Customizing Copilot Environment for .NET Development
 
 This guide covers how to customize GitHub Copilot's development environment specifically for .NET projects, ensuring the required .NET SDK versions and tools are available.

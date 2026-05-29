@@ -1,3 +1,8 @@
+---
+description: Overview of GitHub Apps — what they are, how they differ from OAuth apps, and how they authenticate using installation access tokens.
+tags: [git]
+---
+
 # GitHub Apps
 
 ## What is a GitHub App?

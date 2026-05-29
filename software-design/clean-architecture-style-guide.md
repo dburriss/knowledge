@@ -1,6 +1,6 @@
 ---
 description: Opinionated style guide for structuring projects using clean/onion/ports-and-adapters architecture, with naming conventions, use case patterns, and anti-patterns.
-tags: [architecture, clean-architecture, ports-and-adapters, style-guide]
+tags: [architecture, style-guide]
 ---
 
 # Clean Architecture Style Guide

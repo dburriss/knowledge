@@ -1,6 +1,6 @@
 ---
 description: "A semantic code search tool that enables searching codebases by meaning rather than just keywords."
-tags: [search]
+tags: [search, dev-tools, ai]
 ---
 
 # CK Search

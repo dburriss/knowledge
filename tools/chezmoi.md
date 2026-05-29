@@ -1,6 +1,6 @@
 ---
 description: Reference for chezmoi, a dotfile and config management tool for keeping configs consistent across machines with support for templating, secrets, and per-machine differences.
-tags: [tools, chezmoi, dotfiles, configuration, reference]
+tags: [automation, dev-tools]
 ---
 
 # chezmoi

@@ -1,6 +1,6 @@
 ---
 description: Reference for GitHub CLI commands covering projects, issues, and pull requests, with example invocations and output.
-tags: [tools, github, cli, gh-cli, reference]
+tags: [cli, git]
 ---
 
 # GitHub CLI Commands for Projects, Issues, and PRs

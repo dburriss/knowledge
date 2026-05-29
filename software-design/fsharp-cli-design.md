@@ -1,6 +1,6 @@
 ---
 description: Opinionated style guide for designing F# CLI applications using Argu, with patterns for argument parsing, command routing, result handling, and composition in the main function.
-tags: [fsharp, cli, argu, clean-architecture, ports-and-adapters, style-guide]
+tags: [fsharp, cli, style-guide]
 ---
 
 # F# CLI Design Style Guide

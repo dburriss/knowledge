@@ -1,6 +1,6 @@
 ---
 description: Cheat sheet for mise, a polyglot tool version manager for runtimes, env vars, and tasks.
-tags: [devtools]
+tags: [dev-tools, ai]
 ---
 
 # Mise Cheat Sheet

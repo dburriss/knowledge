@@ -1,6 +1,9 @@
-# Testing Style Guide
+---
+description: Style guide for test design using ABC testing (Acceptance, Building, Communication) and behaviour-focused unit tests.
+tags: [testing, style-guide]
+---
 
-Date: 2026-04-23
+# Testing Style Guide
 
 This guide uses two complementary ideas for test design:
 
