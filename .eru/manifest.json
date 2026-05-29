@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "github/*.md",
+      "tags": [
+        "github"
+      ],
+      "description": "GitHub reference files covering Apps, CLI commands, and Copilot setup."
+    },
+    {
+      "path": "github/copilot-dotnet-environment.md",
+      "tags": [
+        "copilot"
+      ],
+      "description": "How to configure the Copilot ephemeral environment for .NET projects using setup steps."
+    }
+  ]
+}

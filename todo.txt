@@ -1,0 +1,5 @@
+- [x] software-design:clean architecture style guide
+- [x] software-design:f# cli design
+- [x] software-design:stratified design
+- [x] tools:gh-cli
+- [x] tools:chezmoi
