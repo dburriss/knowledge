@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "description": "A collection of reference materials and guides related to GitHub, software design, technology, and tools.",
   "files": [
     {
       "path": "github/*.md",
