@@ -17,6 +17,9 @@
       "description": "How to configure the Copilot ephemeral environment for .NET projects using setup steps."
     },
     {
+      "path": "github/publish-script/*"
+    },
+    {
       "path": "software-design/*.md"
     },
     {

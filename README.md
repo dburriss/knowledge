@@ -35,3 +35,4 @@ Reference documents specific to GitHub features and integrations. These cover pl
 |---|---|
 | [copilot-dotnet-environment](github/copilot-dotnet-environment.md) | Guide for customizing GitHub Copilot's environment for .NET projects, including SDK setup and tool configuration. |
 | [github-apps](github/github-apps.md) | Overview of GitHub Apps — what they are, how they differ from OAuth apps, and how they authenticate using installation access tokens. |
+| [publish-script](github/publish-script.md) | Reference publish pipeline for .NET CLI tools — a local version-bump/tag script plus GitHub Actions workflows that publish to NuGet and create a GitHub Release. |
