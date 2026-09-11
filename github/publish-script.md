@@ -79,14 +79,22 @@ Answering "yes" to "Is this a prerelease?" appends a suffix (e.g. `0.7.0-beta1`)
    chmod +x publish.sh
    ```
 
-7. **Set repo secrets:**
-   - `NUGET_DEPLOY_KEY` — a NuGet API key with push rights, used by `publish-nuget.yml`.
+7. **Configure Trusted Publishing on nuget.org** (replaces long-lived API keys):
+   - Sign in to nuget.org → your username → **Trusted Publishing** → add a new policy.
+   - **Repository Owner:** your GitHub org/user (e.g. `dburriss`)
+   - **Repository:** the repo name (e.g. `orcai`)
+   - **Workflow File:** `publish-nuget.yml` (file name only, not the `.github/workflows/` path)
+   - **Environment:** leave empty unless the workflow uses `environment: release`
+   - A policy on a private repo starts in a 7-day "pending" state and only becomes permanent after the first successful publish — this is expected.
+   - `publish-nuget.yml` uses the [`NuGet/login`](https://github.com/NuGet/login) action to exchange the job's OIDC token for a 1-hour temporary API key, so it needs `permissions: id-token: write` (already set in the reference workflow) and no `NUGET_DEPLOY_KEY` secret.
+   - Optionally set a `NUGET_USER` repo secret with your nuget.org username (profile name, not email) — otherwise hardcode it in the `user:` input.
    - `GITHUB_TOKEN` is provided automatically by Actions; no setup needed for `publish-gh.yml`.
 
 8. **Verify** with `./publish.sh --dry-run` before ever running it for real — it prints every file change and git/gh command it would run without touching disk or git.
 
 ## Notes / gotchas
 
+- `publish-nuget.yml` uses NuGet [Trusted Publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing) (OIDC) instead of a long-lived API key secret — the job requests a GitHub OIDC token, exchanges it for a 1-hour nuget.org API key via the `NuGet/login` action, then pushes with that. This requires `permissions: id-token: write` on the job and a matching Trusted Publishing policy registered on nuget.org (see step 7 above).
 - The workflows target **.NET 10** (`dotnet-version: '10.0.x'`) — bump this if the target repo is on a different SDK.
 - `publish-gh.yml` builds for `linux-x64`, `win-x64`, and `osx-x64` only; add matrix entries for other RIDs (e.g. `osx-arm64`) if needed.
 - `dotnet nuget push` uses `--skip-duplicate` so re-running the workflow (e.g. after a retag) won't fail if the package version already exists on nuget.org.
