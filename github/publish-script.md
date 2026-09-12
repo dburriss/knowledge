@@ -92,6 +92,43 @@ Answering "yes" to "Is this a prerelease?" appends a suffix (e.g. `0.7.0-beta1`)
 
 8. **Verify** with `./publish.sh --dry-run` before ever running it for real — it prints every file change and git/gh command it would run without touching disk or git.
 
+## NuGet package metadata (.fsproj)
+
+All package metadata is inline MSBuild properties in the `.fsproj`'s first `<PropertyGroup>` — no separate `.nuspec` file. Example, from [orcai](https://github.com/dburriss/orcai/blob/main/src/OrcAI.Tool/OrcAI.Tool.fsproj):
+
+```xml
+<PackageId>OrcAI.Tool</PackageId>
+<PackAsTool>true</PackAsTool>
+<Version>0.10.5</Version>
+<Authors>Devon Burriss</Authors>
+<Description>...</Description>
+<Title>orcai</Title>
+<ToolCommandName>orcai</ToolCommandName>
+<Copyright>Copyright © 2025 Devon Burriss</Copyright>
+<PackageProjectUrl>https://github.com/dburriss/orca</PackageProjectUrl>
+<RepositoryUrl>https://github.com/dburriss/orca</RepositoryUrl>
+<RepositoryType>git</RepositoryType>
+<PackageLicenseExpression>MIT</PackageLicenseExpression>
+<PackageTags>github copilot cli project-management automation</PackageTags>
+<PackageReadmeFile>README.md</PackageReadmeFile>
+<PackageReleaseNotes>...</PackageReleaseNotes>
+<PublishRepositoryUrl>true</PublishRepositoryUrl>
+<EmbedUntrackedSources>true</EmbedUntrackedSources>
+```
+
+Notes:
+- `PackAsTool` + `ToolCommandName` mark it as a .NET global/local tool and set the installed CLI command name.
+- `PackageLicenseExpression` uses an SPDX identifier (`MIT`) rather than embedding a license file.
+- `PublishRepositoryUrl` + `EmbedUntrackedSources` enable SourceLink / reproducible builds alongside `RepositoryUrl`.
+- `PackageReadmeFile` names the file NuGet.org displays, but the actual source can be remapped away from the repo's root README via an `ItemGroup`:
+  ```xml
+  <ItemGroup>
+    <None Include="..\..\NUGET.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+  ```
+  This packs `NUGET.md` into the nupkg as `README.md`, letting the NuGet-facing readme differ from the repo's GitHub readme.
+- `publish.fsx` (see above) writes `<Version>` and `<PackageReleaseNotes>` directly into these same properties on each release — `PackageReleaseNotes` ends up as the per-version changelog baked into the package itself.
+
 ## Notes / gotchas
 
 - `publish-nuget.yml` uses NuGet [Trusted Publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing) (OIDC) instead of a long-lived API key secret — the job requests a GitHub OIDC token, exchanges it for a 1-hour nuget.org API key via the `NuGet/login` action, then pushes with that. This requires `permissions: id-token: write` on the job and a matching Trusted Publishing policy registered on nuget.org (see step 7 above).
